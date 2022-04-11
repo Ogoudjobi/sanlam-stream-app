@@ -5,18 +5,9 @@ import requests
 
 class MyPersonalStreamClient(tw.StreamingClient):
 
-    def on_data(self, raw_data):
-        print("on_data")
-        print("\n")
-        print(raw_data)
-        return super().on_data(raw_data)
-
     
     def on_tweet(self, tweet):# ce qui m'interesse
-        print("on_tweet")
-        print("\n")
-        print(tweet)
-        return super().on_tweet(tweet)
+        return tweet
 
 
     def on_connect(self):
@@ -32,6 +23,9 @@ class MyPersonalStreamClient(tw.StreamingClient):
         print("errors")
         print(errors)
         return super().on_errors(errors)
+    
+    def return_stream_tweet(self):
+        ...
 
 
 config = configparser.ConfigParser()
