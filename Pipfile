@@ -9,6 +9,9 @@ tweepy = {extras = ["async"], version = "*"}
 uvicorn = {extras = ["standard"], version = "*"}
 requests = "*"
 configparser = "*"
+aioredis = "*"
+fastapi-sqlalchemy = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
