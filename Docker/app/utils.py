@@ -1,9 +1,9 @@
 import configparser
 import requests
-from mpsc import *
+from app.mpsc import *
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read('app/config.ini')
 
 API_KEY = config['twitter']['api_key']
 API_KEY_SECRET = config['twitter']['api_key_secret']

@@ -5,7 +5,7 @@ from typing import Optional, List, Union
 from tweepy import StreamRule
 import json
 import requests
-import utils
+import app.utils as utils
 
 
 class Rule(BaseModel):

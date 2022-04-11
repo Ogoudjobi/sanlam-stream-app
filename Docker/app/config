@@ -1,0 +1,13 @@
+[twitter]
+
+api_key = A7y7z5BK11yCYEbO7gM7lxwu0
+api_key_secret = Czg6Pl7YtKugym1UJqxlkE1kFxZ7FzVBVyh8KDG06YkYNZuO1L
+bearer_token = AAAAAAAAAAAAAAAAAAAAAGV5awEAAAAA%%2BLSVifekV%%2BMZ%%2BwAVMiphduqD2%%2BM%%3D3QmOPyc1WC5KlPdjD9ZNBnO8tlgZXJ0Jbr81CE9ouPzKZw1pZP
+access_token = 1508425928459829250-1c47hC6CSWm0vYfntVSdXkO2u6pmJ3
+access_token_key = SCMD52LhUSpwa6krWp55x60qfoKb9OmdzFeBc15K8hwVY    
+
+
+[redis]
+
+HOST = localhost
+ENCODING = utf-8
