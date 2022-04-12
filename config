@@ -1,0 +1,25 @@
+[twitter]
+
+API_KEY = A7y7z5BK11yCYEbO7gM7lxwu0
+API_KEY_SECRET = Czg6Pl7YtKugym1UJqxlkE1kFxZ7FzVBVyh8KDG06YkYNZuO1L
+BEARER_TOKEN = AAAAAAAAAAAAAAAAAAAAAGV5awEAAAAA%%2BLSVifekV%%2BMZ%%2BwAVMiphduqD2%%2BM%%3D3QmOPyc1WC5KlPdjD9ZNBnO8tlgZXJ0Jbr81CE9ouPzKZw1pZP
+ACCESS_TOKEN = 1508425928459829250-1c47hC6CSWm0vYfntVSdXkO2u6pmJ3
+ACCESS_TOKEN_KEY = SCMD52LhUSpwa6krWp55x60qfoKb9OmdzFeBc15K8hwVY    
+
+
+[redis]
+
+HOST = localhost
+ENCODING = utf-8
+
+[azure-event-hub]
+
+EVENT_HUB_NAMESPACE = sanlamstreamapp
+CONNECTION_STRING = Endpoint=sb://sanlamstreamapp.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=/6qgX7IUYWcLzUYyorLtO7yWJfb+qfTWYPhS6WOzHqU=
+EVENT_HUB_NAME = sanlamstreamapp
+
+[azure-storage-account]
+
+CONNECTION_STRING_STORAGE = DefaultEndpointsProtocol=https;AccountName=sanlamstreamappstockage;AccountKey=dV8QioutqXYPcqN1Toqn05qcvhivhqgM7lTVVYQRn8VI6nEDX5LNKMDRU0NbkPC9bT2ss2nLz5aQ+AStCqnDkA==;EndpointSuffix=core.windows.net
+STORAGE_ACCOUNT_NAME = sanlamstreamappstockage
+BLOB_CONTAINER = mypersonnalblobcontainer

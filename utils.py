@@ -1,18 +1,9 @@
-import configparser
 import requests
-from mpsc import *
-
-config = configparser.ConfigParser()
-config.read('config.ini')
-
-API_KEY = config['twitter']['api_key']
-API_KEY_SECRET = config['twitter']['api_key_secret']
-
-ACCESS_TOKEN = config['twitter']['access_token']
-ACCESS_TOKEN_KEY = config['twitter']['access_token_key']
-
-BEARER_TOKEN = config['twitter']['bearer_token']
-
+from credentials import BEARER_TOKEN,CONNECTION_STRING, EVENT_HUB_NAME
+import asyncio
+from azure.eventhub.aio import EventHubProducerClient
+from azure.eventhub import EventData
+import json
 
 def bearer_oauth(r):
     """
@@ -24,3 +15,13 @@ def bearer_oauth(r):
     return r
 
 
+def run(data):
+    # Create a producer client to send messages to the event hub.
+    # Specify a connection string to your event hubs namespace and
+    # the event hub name.
+    
+    producer = EventHubProducerClient.from_connection_string(
+        conn_str=CONNECTION_STRING, 
+        eventhub_name=EVENT_HUB_NAME
+    )
+    

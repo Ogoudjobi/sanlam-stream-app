@@ -6,6 +6,7 @@ from tweepy import StreamRule
 import json
 import requests
 import utils
+from mpsc import MyPersonalStreamClient
 
 
 class Rule(BaseModel):
@@ -18,7 +19,7 @@ app = FastAPI(debug=True)
 @app.on_event("startup")
 async def initalization():
     print("Initialization ...")    
-    app.state.tw_client = utils.MyPersonalStreamClient(bearer_token = utils.BEARER_TOKEN,
+    app.state.tw_client = MyPersonalStreamClient(bearer_token = utils.BEARER_TOKEN,
                                 return_type =  requests.Response
                                 )
         
@@ -231,9 +232,11 @@ async def get_stream_tweepy():
         app.state.tw_client.get_rules().json()["data"]
     except KeyError:
         return {"Message": "No rule(s) to filter" }
-    
-    app.state.tw_client.filter()
-
+    try:
+        app.state.tw_client.filter()
+    except:
+        stop_stream_tweepy()
+        return {"Message": "An error occurred" }
 
 @app.get('/tweepy/stream/stop-stream')
 async def stop_stream_tweepy():
