@@ -51,7 +51,7 @@ async def initalization():
 
 @app.get('/')
 async def root():
-    return {"Message": "MyApp version: {}".format("1.0")}
+    return {"Message": "MyApp version: {}".format("1.0"),"Info": "Go to /docs"}
 
 
 
@@ -192,7 +192,7 @@ async def delete_all_rules_tweepy():
         return {"Message": "Cannot delete rules (HTTP {}): {}".format(
                 response.status_code, response.text)}
 
-    return {"Message":response.json()["summary"]}
+    return {"Message":response.json()}
 
 
 
@@ -285,7 +285,3 @@ async def stop_stream_tweepy():
     app.state.tw_client.disconnect()
     return{"Message" : "Stream Stopped"}
 
-
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)

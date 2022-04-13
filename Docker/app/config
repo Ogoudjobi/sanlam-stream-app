@@ -22,4 +22,4 @@ EVENT_HUB_NAME = sanlamstreamapp
 
 CONNECTION_STRING_STORAGE = DefaultEndpointsProtocol=https;AccountName=sanlamstreamappstockage;AccountKey=dV8QioutqXYPcqN1Toqn05qcvhivhqgM7lTVVYQRn8VI6nEDX5LNKMDRU0NbkPC9bT2ss2nLz5aQ+AStCqnDkA==;EndpointSuffix=core.windows.net
 STORAGE_ACCOUNT_NAME = sanlamstreamappstockage
-BLOB_CONTAINER = mypersonnalblobcontainer
+BLOB_CONTAINER = sanlamstreamappblob
