@@ -17,18 +17,19 @@ def processBlob2(filename):
     dict = {}
     print("hello")
     for reading in reader:
-        print(type(reading))
+        print(reading["Body"])
 
         parsed_json = json.loads(reading["Body"])
+        
         if not 'id' in parsed_json:
             return
         if not parsed_json['id'] in dict:
             list = []
             dict[parsed_json['id']] = list
         else:
-            list = dict[parsed_json['id']]
-            list.append(parsed_json)
-        
+            liste = dict[parsed_json['id']]
+            liste.append(parsed_json)
+    print(liste)
     reader.close()
     for device in dict.keys():
         filename = os.getcwd() + '\\' + str(device) + '.csv'

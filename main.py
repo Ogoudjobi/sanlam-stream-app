@@ -1,4 +1,5 @@
 from concurrent.futures import thread
+from datetime import datetime
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -25,7 +26,13 @@ async def initalization():
     app.state.tw_client = MyPersonalStreamClient(bearer_token = utils.BEARER_TOKEN,
                                 return_type =  requests.Response
                                 )
-        
+    log = {
+            "date": str(datetime.now()),
+            "type": "On startup",
+            "msg": "Startup the app.....",
+            "status_code": "unavailable"
+            }
+    utils.write_log(log)
 
 @app.on_event("shutdown")
 async def initalization():
@@ -33,6 +40,13 @@ async def initalization():
     app.state.tw_client.disconnect()
     print("Disconnecting ...")    
 
+    log = {
+            "date": str(datetime.now()),
+            "type": "On shutdown",
+            "msg": "Shutdown the app.....",
+            "status_code": "unavailable"
+            }
+    utils.write_log(log)
 
 
 @app.get('/')
@@ -47,13 +61,35 @@ async def get_rules():
         "https://api.twitter.com/2/tweets/search/stream/rules", auth=utils.bearer_oauth
     )
     if response.status_code != 200:
+        log = {
+            "date": str(datetime.now()),
+            "type": "Retrieve rules",
+            "msg": "Cannot get rules: {}".format(response.text),
+            "status_code": response.status_code
+            }
+        utils.write_log(log)
+        
         return {"Message": "Cannot get rules (HTTP {}): {}".format(response.status_code, response.text)}
     
     try:
         rules = response.json()["data"]
     except KeyError:
+        log = {
+            "date": str(datetime.now()),
+            "type": "Retrieve rules",
+            "msg": "Nothing to retrieve",
+            "status_code": "unavailable"
+            }
+        utils.write_log(log)
         return {"Message": "Nothing to retrieve"}
-         
+    
+    log = {
+        "date": str(datetime.now()),
+        "type": "Retrieve rules",
+        "msg": response.json(),
+        "status_code": response.status_code
+        }
+    utils.write_log(log)
     return response.json()
 
 

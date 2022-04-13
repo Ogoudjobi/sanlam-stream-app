@@ -1,9 +1,11 @@
+from datetime import datetime
 import requests
 from credentials import BEARER_TOKEN,CONNECTION_STRING, EVENT_HUB_NAME
 import asyncio
 from azure.eventhub.aio import EventHubProducerClient
 from azure.eventhub import EventData
 import json
+import os
 
 def bearer_oauth(r):
     """
@@ -32,3 +34,17 @@ async def run(data):
         await producer.send_batch(event_data_batch)
     
     
+def write_log(log):
+    base_dir = "./Log/"
+    if not os.path.exists(base_dir):
+        os.makedirs(base_dir)
+        
+    file_name = "Log-"+str(datetime.now().date())+".log"
+    if not os.path.isfile(base_dir+file_name):
+        with open(base_dir+file_name,'w') as f:
+            json.dump(log,f,indent=4,separators=(',',': '))
+            
+    else:
+        with open(base_dir+file_name,'a') as f:
+            json.dump(log,f,indent=4,separators=(',',': '))
+
