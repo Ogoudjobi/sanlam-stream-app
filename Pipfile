@@ -44,6 +44,9 @@ azure-eventhub = "*"
 azure-eventhub-checkpointstoreblob-aio = "*"
 azure-storage-blob = "*"
 avro-python3 = "*"
+pipfile = "*"
+nest-asyncio = "*"
+tornado = "==4.5.3"
 
 [dev-packages]
 

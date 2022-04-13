@@ -1,3 +1,4 @@
+from concurrent.futures import thread
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -7,6 +8,8 @@ import json
 import requests
 import utils
 from mpsc import MyPersonalStreamClient
+import uvicorn
+
 
 
 class Rule(BaseModel):
@@ -233,12 +236,19 @@ async def get_stream_tweepy():
     except KeyError:
         return {"Message": "No rule(s) to filter" }
     try:
-        app.state.tw_client.filter()
+        app.state.tw_client.filter(threaded = True)
     except:
         stop_stream_tweepy()
         return {"Message": "An error occurred" }
+
+
 
 @app.get('/tweepy/stream/stop-stream')
 async def stop_stream_tweepy():
     app.state.tw_client.disconnect()
     return{"Message" : "Stream Stopped"}
+
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
