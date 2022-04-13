@@ -236,7 +236,8 @@ async def get_stream_tweepy():
     except KeyError:
         return {"Message": "No rule(s) to filter" }
     try:
-        app.state.tw_client.filter(threaded = True)
+        thread = app.state.tw_client.filter(threaded = True)
+        thread
     except:
         stop_stream_tweepy()
         return {"Message": "An error occurred" }

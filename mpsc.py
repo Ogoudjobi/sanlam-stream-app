@@ -12,8 +12,9 @@ class MyPersonalStreamClient(tw.StreamingClient):
         #print(tweet.data)
         #asyncio.create_task(utils.run(tweet.data))
         #asyncio.ensure_future(utils.run(tweet.data))
-        #loop = asyncio.get_event_loop()
-        #loop.run_until_complete(utils.run(tweet.data))
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(utils.run(tweet.data))
         
         
         
