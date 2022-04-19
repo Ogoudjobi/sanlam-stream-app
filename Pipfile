@@ -47,8 +47,13 @@ avro-python3 = "*"
 pipfile = "*"
 nest-asyncio = "*"
 tornado = "==4.5.3"
+autopep8 = "*"
+pylint = "*"
 
 [dev-packages]
+pylint = "*"
+autopep8 = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"

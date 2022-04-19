@@ -1,11 +1,19 @@
-from concurrent.futures import thread
+"""_summary_
+
+Raises:
+    Exception: _description_
+
+Returns:
+    _type_: _description_
+"""
+
 from datetime import datetime
+from typing import Optional, List, Union
+import json
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
-from typing import Optional, List, Union
 from tweepy import StreamRule
-import json
 import requests
 import app.utils as utils
 from others.mpsc import MyPersonalStreamClient
@@ -14,6 +22,11 @@ import uvicorn
 
 
 class Rule(BaseModel):
+    """_summary_
+
+    Args:
+        BaseModel (_type_): _description_
+    """
     value : str
     tag : Optional[str] = None
 
@@ -35,8 +48,7 @@ async def initalization():
     utils.write_log(log)
 
 @app.on_event("shutdown")
-async def initalization():
-     
+async def initalization():   
     app.state.tw_client.disconnect()
     print("Disconnecting ...")    
 
@@ -101,7 +113,7 @@ async def get_rules_tweepy():
         return  {"Message" : "Cannot get rules (HTTP {}): {}".format(response.status_code, response.text) }
     
     try:
-        rules = response.json()["data"]
+        response.json()["data"]
     except KeyError:
         return {"Message": "Nothing to retrieve"}
     
@@ -272,8 +284,7 @@ async def get_stream_tweepy():
     except KeyError:
         return {"Message": "No rule(s) to filter" }
     try:
-        thread = app.state.tw_client.filter(threaded = True)
-        thread
+        app.state.tw_client.filter(threaded = True)
     except:
         stop_stream_tweepy()
         return {"Message": "An error occurred" }

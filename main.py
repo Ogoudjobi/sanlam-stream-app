@@ -265,15 +265,12 @@ async def get_stream():
 
 @app.get('/tweepy/stream/get-stream')
 async def get_stream_tweepy():
-    
-    
     try:
         app.state.tw_client.get_rules().json()["data"]
     except KeyError:
         return {"Message": "No rule(s) to filter" }
     try:
         thread = app.state.tw_client.filter(threaded = True)
-        thread
     except:
         stop_stream_tweepy()
         return {"Message": "An error occurred" }
@@ -284,4 +281,3 @@ async def get_stream_tweepy():
 async def stop_stream_tweepy():
     app.state.tw_client.disconnect()
     return{"Message" : "Stream Stopped"}
-
